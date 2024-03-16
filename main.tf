@@ -68,4 +68,3 @@ resource "aws_route53_record" "my_record_to_s3" {
     aws_s3_bucket_website_configuration.www_my_website
   ]
 }
-
