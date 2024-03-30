@@ -1,0 +1,32 @@
+name: Terraform Actions
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v3
+      with:
+        terraform_version: 1.1.7
+    
+    - name: Terraform init
+      run: terraform init
+    
+    - name: Terraform Plan
+      run: terraform plan
+
+    - name: Terraform Apply (auto approve)
+      run: terraform apply -auto-approve
