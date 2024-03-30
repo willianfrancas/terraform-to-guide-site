@@ -69,9 +69,10 @@ resource "aws_acm_certificate" "my_certificate" {
   }
   provider = aws.virginia
 }
-# resource "aws_acm_certificate_validation" "certificate_validation" {
-#   certificate_arn = aws_acm_certificate.my_certificate.arn
-# }
+
+resource "aws_acm_certificate_validation" "certificate_validation" {
+  certificate_arn = aws_acm_certificate.my_certificate.arn
+}
 
 resource "aws_route53_zone" "primary" {
   name = aws_s3_bucket.www_my_website.id
@@ -229,4 +230,4 @@ resource "null_resource" "cache_invalidation" {
 #     aws_cloudfront_distribution.my_distribution
 #   ]
 # }
- 
+
