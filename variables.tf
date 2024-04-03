@@ -1,3 +1,13 @@
+terraform {
+  cloud {
+    organization = "willianfrancas"
+
+    workspaces {
+      name = "terraform_guide"
+    }
+  }
+}
+
 variable "aws_region" {
   description = "cheaper region to use us-east-1"
   type        = string
